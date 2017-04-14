@@ -10,7 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
     " My Bundles here:
     """"""""""""""""""
     "Plugin 'altercation/vim-colors-solarized'
-    "Plugin 'valloric/youcompleteme'
+    Plugin 'valloric/youcompleteme'
     Plugin 'bling/vim-airline'
     Plugin 'kien/ctrlp.vim'
     Plugin 'scrooloose/nerdtree'
@@ -200,7 +200,7 @@ nmap <Tab> :b#<CR>
     " YouCompleteMe
     """"""""""""""""""""""""""""""
     "let ycm_autoclose_preview_window_after_completion = 1
-    "set completeopt-=preview
+    set completeopt-=preview
     "nmap gd :YcmCompleter GoToDefinition<CR>
     "nmap gl :YcmCompleter GoToReferences<CR>
     
