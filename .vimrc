@@ -9,11 +9,12 @@ Plugin 'VundleVim/Vundle.vim'
 
     " My Bundles here:
     """"""""""""""""""
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'valloric/youcompleteme'
+    "Plugin 'altercation/vim-colors-solarized'
+    "Plugin 'valloric/youcompleteme'
     Plugin 'bling/vim-airline'
     Plugin 'kien/ctrlp.vim'
-    "Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
@@ -23,9 +24,10 @@ Plugin 'VundleVim/Vundle.vim'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
-    Plugin 'elzr/vim-json'
+    "Plugin 'elzr/vim-json'
     Plugin 'othree/html5.vim'
     "Plugin 'nopik/vim-nerdtree-direnter'
+    "Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -33,9 +35,9 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 
 " => General settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader=',' " Map Leader
+let mapleader=' ' " Map Leader
 set mouse=a
-set number "enable line numbers
+set autoread "auto read files when modified outside
 set ignorecase
 set hlsearch
 set incsearch
@@ -43,17 +45,23 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
 set hidden
+set clipboard=unnamed "use system clipboard as default
 
 
 " => Appearence options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on "turn on syntax highlighting
 set cursorline "highlight the screen line of the cursor
+set cursorcolumn
+set number "enable line numbers
 set ruler "show the line and column number of the cursor position
+set scrolloff=3 "make sure that at least 3 lines above or beneath cursor
 set t_Co=256
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 set background=dark
-colorscheme solarized "select colorscheme
+colorscheme molokai "select colorscheme
+let g:molokai_original=1
+let g:rehash256=1
 " Status Line {
     set laststatus=2                             " always show statusbar  
 "   set statusline=  
@@ -102,9 +110,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 
 " Pagedown 1/2
-nmap <Space> <C-d>
+nmap <S-j> <C-d>
 " Pageup 1/2
-nmap <S-Space> <C-u>
+nmap <S-k> <C-u>
 
 " Move to the next buffer
 nmap L :bnext<CR>
@@ -118,7 +126,7 @@ nmap <leader>q :bd<CR>
 nmap <Tab> :b#<CR>
 
 " Explorer Mode
-nmap <leader>n :Explore<CR>
+"nmap <leader>n :Explore<CR>
 
 
 " => Plugins
@@ -130,64 +138,81 @@ nmap <leader>n :Explore<CR>
     " AirLine
     """"""""""""""""""""""""""""""
     " Enable the list of buffers
-    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#enabled=1
     " Show just the filename
-    let g:airline#extensions#tabline#fnamemod = ':t'
-    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#tabline#fnamemod=':t'
+    let g:airline#extensions#tabline#buffer_nr_show=1
 
     " CtrlP
     """"""""""""""""""""""""""""""
-    let g:ctrlp_map = '<C-p>'
-    let g:ctrlp_show_hidden = 1
-    let g:ctrlp_working_path_mode = 'r'
+    "let g:ctrlp_map = '<D-p>'
+    let g:ctrlp_show_hidden=1
+    let g:ctrlp_working_path_mode='r'
+    "let g:ctrlp_use_caching=0
+    let g:ctrlp_max_files=0
+    let g:ctrlp_custom_ignore='node_modules\|git'
     " Easy bindings for its various modes
-    nmap <leader><leader>b :CtrlPBuffer<cr>
-    nmap <leader><leader>m :CtrlPMixed<cr>
-    nmap <leader><leader>s :CtrlPMRU<cr>
-    nmap <leader><leader>f :CtrlP<cr>
+    nmap <leader>fb :CtrlPBuffer<cr>
+    "nmap <leader><leader>m :CtrlPMixed<cr>
+    nmap <leader>fr :CtrlPMRU<cr>
+    nmap <leader>fp :CtrlP<cr>
 
     " NERDTree
     """"""""""""""""""""""""""""""
-    nmap <C-n> :NERDTreeToggle<CR>
-    let NERDTreeIgnore = ['\.class$']
+    nmap <Leader>n :NERDTreeToggle<CR>
+    nmap <Leader>p :NERDTreeFind<CR>
+    let NERDTreeIgnore=['\.class$']
     let NERDTreeQuitOnOpen=1
+    let NERDTreeShowBookmarks=1
+
+    " NERDCommenter
+    """"""""""""""""""""""""""""""
+    let g:NERDCommentEmptyLines=1
+    let g:NERDCompactSexyComs=1
+    let g:NERDDefaultAlign='left'
+    "nmap <Leader>cc :call NERDComment(0,"toggle")<CR>
 
     " Tagbar
     """"""""""""""""""""""""""""""
-    nmap <C-b> :TagbarToggle<CR>
+    nmap <Leader>t :TagbarToggle<CR>
     "autocmd FileType * nested :call tagbar#autoopen(0)
 
     " DelimitMate
     """"""""""""""""""""""""""""""
-    let delimitMate_expand_cr = 1
-    let delimitMate_expand_space = 1
+    let delimitMate_expand_cr=1
+    let delimitMate_expand_space=1
 
     " Javascript
     """"""""""""""""""""""""""""""
-    let g:javascript_enable_domhtmlcss = 1
+    let g:javascript_enable_domhtmlcss=1
 
     " Syntastic
     """"""""""""""""""""""""""""""
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_always_populate_loc_list=1
+    let g:syntastic_auto_loc_list=1
+    let g:syntastic_check_on_open=1
+    let g:syntastic_check_on_wq=0
+    let g:syntastic_javascript_checkers=['eslint']
 
     " YouCompleteMe
     """"""""""""""""""""""""""""""
     "let ycm_autoclose_preview_window_after_completion = 1
-    set completeopt-=preview
-    nmap gd :YcmCompleter GoToDefinition<CR>
-    nmap gl :YcmCompleter GoToReferences<CR>
+    "set completeopt-=preview
+    "nmap gd :YcmCompleter GoToDefinition<CR>
+    "nmap gl :YcmCompleter GoToReferences<CR>
     
     " Jsx
     """"""""""""""""""""""""""""""
-    let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+    let g:jsx_ext_required=0 " Allow JSX in normal JS files
 
     " JsBeautify
     """"""""""""""""""""""""""""""
-    nnoremap <leader>ff :%!js-beautify -j -q -B -P -f -<CR>
+    nnoremap <leader>ff :%!js-beautify -q -B -f -<CR>
+    
+    " AutoFormat
+    """"""""""""""""""""""""""""""
+    "nmap <Leader>f :Autoformat<CR>
+
