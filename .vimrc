@@ -9,7 +9,6 @@ Plugin 'VundleVim/Vundle.vim'
 
     " My Bundles here:
     """"""""""""""""""
-    "Plugin 'altercation/vim-colors-solarized'
     Plugin 'valloric/youcompleteme'
     Plugin 'bling/vim-airline'
     Plugin 'kien/ctrlp.vim'
@@ -28,6 +27,7 @@ Plugin 'VundleVim/Vundle.vim'
     Plugin 'othree/html5.vim'
     "Plugin 'nopik/vim-nerdtree-direnter'
     "Plugin 'Chiel92/vim-autoformat'
+    Plugin 'CodeFalling/fcitx-vim-osx' "automatically switch to English input method when entering Normal mode
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -81,9 +81,9 @@ let g:netrw_liststyle=3
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set backspace=indent,eol,start "intuitive backspacing in insert mode
 "switch between input method
-set noimdisable 
-autocmd! InsertLeave * set imdisable|set iminsert=0
-autocmd! InsertEnter * set noimdisable|set iminsert=0
+"set noimdisable 
+"autocmd! InsertLeave * set imdisable|set iminsert=0
+"autocmd! InsertEnter * set noimdisable|set iminsert=0
 
 
 " => Indenting
@@ -215,4 +215,3 @@ nmap <Tab> :b#<CR>
     " AutoFormat
     """"""""""""""""""""""""""""""
     "nmap <Leader>f :Autoformat<CR>
-
