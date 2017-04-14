@@ -18,15 +18,12 @@ Plugin 'VundleVim/Vundle.vim'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
-    Plugin 'majutsushi/tagbar'
     Plugin 'raimondi/delimitmate'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
-    "Plugin 'elzr/vim-json'
     Plugin 'othree/html5.vim'
-    "Plugin 'nopik/vim-nerdtree-direnter'
-    "Plugin 'Chiel92/vim-autoformat'
+    Plugin 'Chiel92/vim-autoformat'
     Plugin 'CodeFalling/fcitx-vim-osx' "automatically switch to English input method when entering Normal mode
 
 call vundle#end() "required
@@ -55,7 +52,7 @@ set cursorline "highlight the screen line of the cursor
 set cursorcolumn
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
-set scrolloff=3 "make sure that at least 3 lines above or beneath cursor
+set scrolloff=3 "3 lines off the edge when scrolling
 set t_Co=256
 "let g:solarized_termcolors=256
 set background=dark
@@ -80,14 +77,6 @@ let g:netrw_liststyle=3
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set backspace=indent,eol,start "intuitive backspacing in insert mode
-"switch between input method
-"set noimdisable 
-"autocmd! InsertLeave * set imdisable|set iminsert=0
-"autocmd! InsertEnter * set noimdisable|set iminsert=0
-
-
-" => Indenting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent "copy indent from current line when starting a new line
 set smartindent
 set tabstop=4 "number of spaces that a <Tab> in the file counts for
@@ -120,13 +109,11 @@ nmap L :bnext<CR>
 nmap H :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
-nmap <leader>q :bd<CR>
-
+nmap <Leader>q :bd<CR>
 " Switch between two most recent buffers
 nmap <Tab> :b#<CR>
-
-" Explorer Mode
-"nmap <leader>n :Explore<CR>
+" Create new [No Name] buffer
+nmap <Leader>t :enew<CR>
 
 
 " => Plugins
@@ -152,10 +139,10 @@ nmap <Tab> :b#<CR>
     let g:ctrlp_max_files=0
     let g:ctrlp_custom_ignore='node_modules\|git'
     " Easy bindings for its various modes
-    nmap <leader>fb :CtrlPBuffer<cr>
-    "nmap <leader><leader>m :CtrlPMixed<cr>
-    nmap <leader>fr :CtrlPMRU<cr>
-    nmap <leader>fp :CtrlP<cr>
+    nmap <Leader>fb :CtrlPBuffer<cr>
+    "nmap <Leader>fm :CtrlPMixed<cr>
+    nmap <Leader>fr :CtrlPMRU<cr>
+    nmap <Leader>fp :CtrlP<cr>
 
     " NERDTree
     """"""""""""""""""""""""""""""
@@ -171,11 +158,6 @@ nmap <Tab> :b#<CR>
     let g:NERDCompactSexyComs=1
     let g:NERDDefaultAlign='left'
     "nmap <Leader>cc :call NERDComment(0,"toggle")<CR>
-
-    " Tagbar
-    """"""""""""""""""""""""""""""
-    nmap <Leader>t :TagbarToggle<CR>
-    "autocmd FileType * nested :call tagbar#autoopen(0)
 
     " DelimitMate
     """"""""""""""""""""""""""""""
@@ -208,10 +190,6 @@ nmap <Tab> :b#<CR>
     """"""""""""""""""""""""""""""
     let g:jsx_ext_required=0 " Allow JSX in normal JS files
 
-    " JsBeautify
-    """"""""""""""""""""""""""""""
-    nnoremap <leader>ff :%!js-beautify -q -B -f -<CR>
-    
     " AutoFormat
     """"""""""""""""""""""""""""""
-    "nmap <Leader>f :Autoformat<CR>
+    nnoremap <Leader>ff :Autoformat<CR>
