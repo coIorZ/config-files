@@ -9,13 +9,12 @@ Plugin 'VundleVim/Vundle.vim'
 
     " My Bundles here:
     """"""""""""""""""
-    Plugin 'valloric/youcompleteme'
-    Plugin 'bling/vim-airline'
+    Plugin 'vim-airline/vim-airline'
     Plugin 'kien/ctrlp.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'scrooloose/nerdcommenter'
-    Plugin 'scrooloose/syntastic'
+    Plugin 'vim-syntastic/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'raimondi/delimitmate'
@@ -25,6 +24,7 @@ Plugin 'VundleVim/Vundle.vim'
     Plugin 'othree/html5.vim'
     Plugin 'Chiel92/vim-autoformat'
     Plugin 'CodeFalling/fcitx-vim-osx' "automatically switch to English input method when entering Normal mode
+    Plugin 'lifepillar/vim-mucomplete'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -179,13 +179,6 @@ nmap <Leader>t :enew<CR>
     let g:syntastic_check_on_wq=0
     let g:syntastic_javascript_checkers=['eslint']
 
-    " YouCompleteMe
-    """"""""""""""""""""""""""""""
-    "let ycm_autoclose_preview_window_after_completion = 1
-    set completeopt-=preview
-    "nmap gd :YcmCompleter GoToDefinition<CR>
-    "nmap gl :YcmCompleter GoToReferences<CR>
-    
     " Jsx
     """"""""""""""""""""""""""""""
     let g:jsx_ext_required=0 " Allow JSX in normal JS files
@@ -193,3 +186,9 @@ nmap <Leader>t :enew<CR>
     " AutoFormat
     """"""""""""""""""""""""""""""
     nnoremap <Leader>ff :Autoformat<CR>
+
+    " Mucomplete
+    """"""""""""""""""""""""""""""
+    set shortmess+=c
+    set completeopt+=menuone,noinsert,noselect
+    let g:mucomplete#enable_auto_at_startup = 1
