@@ -23,8 +23,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'CodeFalling/fcitx-vim-osx' "automatically switch to English input method when entering Normal mode
+Plugin 'CodeFalling/fcitx-vim-osx' "CodeFalling/fcitx-remote-for-osx is required
 Plugin 'lifepillar/vim-mucomplete'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -33,6 +34,7 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 " => General settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' ' " Map Leader
+set updatetime=1000
 set mouse=a
 set autoread "auto read files when modified outside
 set ignorecase
@@ -53,12 +55,11 @@ set cursorcolumn
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
 set scrolloff=3 "3 lines off the edge when scrolling
-set t_Co=256
-"let g:solarized_termcolors=256
-set background=dark
-colorscheme molokai "select colorscheme
+" Theme {
+colorscheme molokai "tomasr/molokai is required
 let g:molokai_original=1
 let g:rehash256=1
+"}
 " Status Line {
 set laststatus=2                             " always show statusbar
 "set statusline=
@@ -189,6 +190,6 @@ nnoremap <Leader>ff :Autoformat<CR>
 
 " Mucomplete
 """"""""""""""""""""""""""""""
-set shortmess+=c
+set shortmess+=c "hide bottom menu
 set completeopt+=menuone,noinsert,noselect
-let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#enable_auto_at_startup=1
