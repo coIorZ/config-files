@@ -21,9 +21,9 @@ Plugin 'raimondi/delimitmate'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'othree/html5.vim'
+"Plugin 'othree/html5.vim'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'CodeFalling/fcitx-vim-osx' "CodeFalling/fcitx-remote-for-osx is required
+"Plugin 'CodeFalling/fcitx-vim-osx' "CodeFalling/fcitx-remote-for-osx is required
 Plugin 'lifepillar/vim-mucomplete'
 Plugin 'airblade/vim-gitgutter'
 
@@ -55,6 +55,7 @@ set cursorcolumn
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
 set scrolloff=3 "3 lines off the edge when scrolling
+set guifont=Monaco:h13
 " Theme {
 colorscheme molokai "tomasr/molokai is required
 let g:molokai_original=1
@@ -140,10 +141,10 @@ let g:ctrlp_working_path_mode='r'
 let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore='node_modules\|git'
 " Easy bindings for its various modes
-nmap <Leader>fb :CtrlPBuffer<cr>
-"nmap <Leader>fm :CtrlPMixed<cr>
-nmap <Leader>fr :CtrlPMRU<cr>
-nmap <Leader>fp :CtrlP<cr>
+nmap <Leader><Leader>b :CtrlPBuffer<cr>
+nmap <Leader><Leader>m :CtrlPMixed<cr>
+nmap <Leader><Leader>r :CtrlPMRU<cr>
+nmap <Leader><Leader>p :CtrlP<cr>
 
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -175,6 +176,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=5
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 let g:syntastic_javascript_checkers=['eslint']
