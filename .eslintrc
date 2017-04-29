@@ -22,6 +22,12 @@
       "react/jsx-uses-react": 1,
       "no-console": 0,
       "semi": 2,
+      "jsx-quotes": [2, "prefer-single"],
+      "max-len": [2, 120, 2],
+      "indent": [2, 2],
+      "no-multiple-empty-lines": 2,
+      "object-curly-spacing": [2, "always"],
+      "space-infix-ops": [2, {"int32Hint": true}],
       "key-spacing": [2, {
         "multiLine": {
           "beforeColon": false,
@@ -32,10 +38,6 @@
           "afterColon": true,
           "on": "colon"
         }
-      }],
-      "jsx-quotes": [2, "prefer-single"],
-      "max-len": [2, 120, 2],
-      "object-curly-spacing": [2, "always"],
-      "no-multiple-empty-lines": 2
+      }]
     }
 }
