@@ -14,7 +14,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
@@ -141,10 +141,10 @@ let g:ctrlp_working_path_mode='r'
 let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore='node_modules\|git'
 " Easy bindings for its various modes
-nmap <Leader><Leader>b :CtrlPBuffer<cr>
-nmap <Leader><Leader>m :CtrlPMixed<cr>
-nmap <Leader><Leader>r :CtrlPMRU<cr>
-nmap <Leader><Leader>p :CtrlP<cr>
+nmap <Leader>b :CtrlPBuffer<cr>
+nmap <Leader>m :CtrlPMixed<cr>
+nmap <Leader>r :CtrlPMRU<cr>
+nmap <Leader>p :CtrlP<cr>
 
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -178,12 +178,12 @@ let g:javascript_enable_domhtmlcss=1
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
-"let g:syntastic_always_populate_loc_list=1
+let g:syntastic_always_populate_loc_list=1
 "let g:syntastic_auto_loc_list=1
-"let g:syntastic_loc_list_height=3
-"let g:syntastic_check_on_open=1
-"let g:syntastic_check_on_wq=0
-"let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_loc_list_height=3
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_javascript_checkers=['eslint']
 
 " Jsx
 """"""""""""""""""""""""""""""
@@ -191,8 +191,11 @@ let g:jsx_ext_required=0 " Allow JSX in normal JS files
 
 " AutoFormat
 """"""""""""""""""""""""""""""
-"au BufWrite * :Autoformat "auto format upon saving
-nnoremap <Leader>ff :Autoformat<CR>
+au BufWrite * :Autoformat "auto format upon saving
+nnoremap <Leader>f :Autoformat<CR>
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript=['eslint']
+"let g:autoformat_verbosemode=1
 
 " Mucomplete
 """"""""""""""""""""""""""""""
