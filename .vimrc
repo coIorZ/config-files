@@ -12,13 +12,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
-Plugin 'easymotion/vim-easymotion'
+"Plugin 'easymotion/vim-easymotion'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 "Plugin 'othree/html5.vim'
@@ -34,7 +34,7 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 " => General settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' ' " Map Leader
-set updatetime=1000
+set updatetime=2000
 set mouse=a
 set autoread "auto read files when modified outside
 set ignorecase
@@ -122,7 +122,7 @@ nmap <Leader>t :enew<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EasyMotion
 """"""""""""""""""""""""""""""
-map <Leader> <Plug>(easymotion-prefix)
+"map <Leader> <Plug>(easymotion-prefix)
 
 " AirLine
 """"""""""""""""""""""""""""""
@@ -160,6 +160,10 @@ let g:NERDCompactSexyComs=1
 let g:NERDDefaultAlign='left'
 "nmap <Leader>cc :call NERDComment(0,"toggle")<CR>
 
+" Fugitive
+""""""""""""""""""""""""""""""
+nmap <Leader>gb :Gblame<cr>
+
 " DelimitMate
 """"""""""""""""""""""""""""""
 let delimitMate_expand_cr=1
@@ -171,15 +175,15 @@ let g:javascript_enable_domhtmlcss=1
 
 " Syntastic
 """"""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_loc_list_height=5
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-let g:syntastic_javascript_checkers=['eslint']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list=1
+"let g:syntastic_auto_loc_list=1
+"let g:syntastic_loc_list_height=3
+"let g:syntastic_check_on_open=1
+"let g:syntastic_check_on_wq=0
+"let g:syntastic_javascript_checkers=['eslint']
 
 " Jsx
 """"""""""""""""""""""""""""""
