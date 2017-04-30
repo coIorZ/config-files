@@ -117,6 +117,9 @@ nmap <Tab> :b#<CR>
 " Create new [No Name] buffer
 nmap <Leader>t :enew<CR>
 
+" Format JSON
+com! FormatJSON %!python -m json.tool
+
 
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,7 +194,7 @@ let g:jsx_ext_required=0 " Allow JSX in normal JS files
 
 " AutoFormat
 """"""""""""""""""""""""""""""
-au BufWrite * :Autoformat "auto format upon saving
+"au BufWrite * :Autoformat "auto format upon saving
 nnoremap <Leader>f :Autoformat<CR>
 let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
 let g:formatters_javascript=['eslint']
