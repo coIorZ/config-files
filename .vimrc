@@ -26,6 +26,7 @@ Plugin 'Chiel92/vim-autoformat'
 "Plugin 'CodeFalling/fcitx-vim-osx' "CodeFalling/fcitx-remote-for-osx is required
 Plugin 'lifepillar/vim-mucomplete'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -205,3 +206,8 @@ let g:formatters_javascript=['eslint']
 set shortmess+=c "hide bottom menu
 set completeopt+=menuone,noinsert,noselect
 let g:mucomplete#enable_auto_at_startup=1
+
+" Mucomplete
+""""""""""""""""""""""""""""""
+nnoremap <Leader>a :Ack!<Space>
+let g:ack_mappings={"o": "<CR><C-W><C-W>:ccl<CR>"}
