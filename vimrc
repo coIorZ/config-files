@@ -23,8 +23,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 "Plugin 'othree/html5.vim'
 Plugin 'Chiel92/vim-autoformat'
-"Plugin 'CodeFalling/fcitx-vim-osx' "CodeFalling/fcitx-remote-for-osx is required
-Plugin 'lifepillar/vim-mucomplete'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mileszs/ack.vim'
 
@@ -107,9 +106,9 @@ nmap <S-j> <C-d>
 nmap <S-k> <C-u>
 
 " Move to the next buffer
-nmap L :bnext<CR>
+nmap <S-l> :bnext<CR>
 " Move to the previous buffer
-nmap H :bprevious<CR>
+nmap <S-h> :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <Leader>q :bd<CR>
@@ -201,13 +200,7 @@ let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --f
 let g:formatters_javascript=['eslint']
 "let g:autoformat_verbosemode=1
 
-" Mucomplete
-""""""""""""""""""""""""""""""
-set shortmess+=c "hide bottom menu
-set completeopt+=menuone,noinsert,noselect
-let g:mucomplete#enable_auto_at_startup=1
-
-" Mucomplete
+" Ack
 """"""""""""""""""""""""""""""
 nnoremap <Leader>a :Ack!<Space>
 let g:ack_mappings={"o": "<CR><C-W><C-W>:ccl<CR>"}
