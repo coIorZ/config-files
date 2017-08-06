@@ -26,6 +26,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mileszs/ack.vim'
+"Plugin 'posva/vim-vue'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -45,6 +46,7 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " This is almost a must if you wish to use buffers in this way.
 set hidden
 set clipboard=unnamed "use system clipboard as default
+set noswapfile "disable .swp file
 
 
 " => Appearence options
@@ -161,6 +163,7 @@ let NERDTreeShowBookmarks=1
 let g:NERDCommentEmptyLines=1
 let g:NERDCompactSexyComs=1
 let g:NERDDefaultAlign='left'
+:map <D-/> <Leader>ci
 "nmap <Leader>cc :call NERDComment(0,"toggle")<CR>
 
 " Fugitive
@@ -184,7 +187,7 @@ let g:javascript_enable_domhtmlcss=1
 let g:syntastic_always_populate_loc_list=1
 "let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
-let g:syntastic_check_on_open=1
+"let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 let g:syntastic_javascript_checkers=['eslint']
 
@@ -196,8 +199,8 @@ let g:jsx_ext_required=0 " Allow JSX in normal JS files
 """"""""""""""""""""""""""""""
 "au BufWrite * :Autoformat "auto format upon saving
 nnoremap <Leader>f :Autoformat<CR>
-let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-let g:formatters_javascript=['eslint']
+"let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+"let g:formatters_javascript=['eslint']
 "let g:autoformat_verbosemode=1
 
 " Ack
