@@ -18,15 +18,15 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
-"Plugin 'easymotion/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 "Plugin 'othree/html5.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
-"Plugin 'posva/vim-vue'
+Plugin 'kaicataldo/material.vim'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -35,7 +35,7 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 " => General settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' ' " Map Leader
-set updatetime=2000
+set updatetime=100
 set mouse=a
 set autoread "auto read files when modified outside
 set ignorecase
@@ -53,13 +53,14 @@ set noswapfile "disable .swp file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on "turn on syntax highlighting
 set cursorline "highlight the screen line of the cursor
-set cursorcolumn
+"set cursorcolumn
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
 set scrolloff=3 "3 lines off the edge when scrolling
-set guifont=Monaco:h13
+set guifont=Monaco:h14
 " Theme {
-colorscheme molokai "tomasr/molokai is required
+colorscheme molokai "molokai | gruvbox | material
+set background=dark
 let g:molokai_original=1
 let g:rehash256=1
 "}
@@ -94,6 +95,8 @@ set smarttab "makes a <Tab> in front of a line insert blanks according to 'shift
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quick Escape
 inoremap kj <Esc>
+inoremap Kj <Esc>
+inoremap kJ <Esc>
 inoremap KJ <Esc>
 
 " Window switching
@@ -147,14 +150,13 @@ let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore='node_modules\|git'
 " Easy bindings for its various modes
 nmap <Leader>b :CtrlPBuffer<cr>
-nmap <Leader>m :CtrlPMixed<cr>
 nmap <Leader>r :CtrlPMRU<cr>
 nmap <Leader>p :CtrlP<cr>
 
 " NERDTree
 """"""""""""""""""""""""""""""
 nmap <Leader>n :NERDTreeFind<CR>
-let NERDTreeIgnore=['\.class$']
+let NERDTreeIgnore=['\.class$', '^\.git$', '\.DS_Store$']
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowBookmarks=1
 
@@ -164,11 +166,11 @@ let g:NERDCommentEmptyLines=1
 let g:NERDCompactSexyComs=1
 let g:NERDDefaultAlign='left'
 :map <D-/> <Leader>ci
-"nmap <Leader>cc :call NERDComment(0,"toggle")<CR>
 
 " Fugitive
 """"""""""""""""""""""""""""""
 nmap <Leader>gb :Gblame<cr>
+nmap <Leader>gs :Gstatus<cr>
 
 " DelimitMate
 """"""""""""""""""""""""""""""
@@ -181,15 +183,16 @@ let g:javascript_enable_domhtmlcss=1
 
 " Syntastic
 """"""""""""""""""""""""""""""
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
 "let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 "let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
+let g:syntastic_check_on_wq=1
 let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exe = '[ -f $(npm bin)/eslint ] && $(npm bin)/eslint || eslint'
 
 " Jsx
 """"""""""""""""""""""""""""""
@@ -199,11 +202,27 @@ let g:jsx_ext_required=0 " Allow JSX in normal JS files
 """"""""""""""""""""""""""""""
 "au BufWrite * :Autoformat "auto format upon saving
 nnoremap <Leader>f :Autoformat<CR>
-"let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-"let g:formatters_javascript=['eslint']
-"let g:autoformat_verbosemode=1
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript=['eslint']
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+let g:autoformat_verbosemode=1
+
+" YouCompleteMe
+""""""""""""""""""""""""""""""
+nnoremap <leader>g :YcmCompleter GoTo<CR>
 
 " Ack
 """"""""""""""""""""""""""""""
 nnoremap <Leader>a :Ack!<Space>
 let g:ack_mappings={"o": "<CR><C-W><C-W>:ccl<CR>"}
+
+" Fzf
+""""""""""""""""""""""""""""""
+set rtp+=/usr/local/opt/fzf
+
+" Signify
+""""""""""""""""""""""""""""""
+nmap > <Plug>(signify-next-hunk)
+nmap < <Plug>(signify-prev-hunk)noremap noremap 
