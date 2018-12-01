@@ -10,23 +10,18 @@ Plugin 'VundleVim/Vundle.vim'
 " My Bundles here:
 """"""""""""""""""
 Plugin 'vim-airline/vim-airline'
-Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-"Plugin 'othree/html5.vim'
-Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
-Plugin 'kaicataldo/material.vim'
+Plugin 'tpope/vim-repeat'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -36,7 +31,7 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' ' " Map Leader
 set updatetime=100
-set mouse=a
+"set mouse=a
 set autoread "auto read files when modified outside
 set ignorecase
 set hlsearch
@@ -57,14 +52,11 @@ set cursorline "highlight the screen line of the cursor
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
 set scrolloff=3 "3 lines off the edge when scrolling
-set guifont=Monaco:h14
-" Theme {
+"set guifont=Monaco:h16
 colorscheme molokai "molokai | gruvbox | material
 set background=dark
 let g:molokai_original=1
 let g:rehash256=1
-"}
-" Status Line {
 set laststatus=2                             " always show statusbar
 "set statusline=
 "set statusline+=%-10.3n\                     " buffer number
@@ -75,9 +67,11 @@ set laststatus=2                             " always show statusbar
 "set statusline+=0x%-8B                       " character value
 "set statusline+=%-14(%l,%c%V%)               " line, character
 "set statusline+=%<%P                         " file position
-"}
 let g:netrw_liststyle=3
 
+"Only required for mac users to preven the terminal flash issue
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -99,21 +93,10 @@ inoremap Kj <Esc>
 inoremap kJ <Esc>
 inoremap KJ <Esc>
 
-" Window switching
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-
 " Pagedown 1/2
 nmap <S-j> <C-d>
 " Pageup 1/2
 nmap <S-k> <C-u>
-
-" Move to the next buffer
-nmap <S-l> :bnext<CR>
-" Move to the previous buffer
-nmap <S-h> :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <Leader>q :bd<CR>
@@ -122,15 +105,12 @@ nmap <Tab> :b#<CR>
 " Create new [No Name] buffer
 nmap <Leader>t :enew<CR>
 
-" Format JSON
-com! FormatJSON %!python -m json.tool
-
 
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EasyMotion
 """"""""""""""""""""""""""""""
-"map <Leader> <Plug>(easymotion-prefix)
+map <Leader><Leader> <Plug>(easymotion-prefix)
 
 " AirLine
 """"""""""""""""""""""""""""""
@@ -139,19 +119,6 @@ let g:airline#extensions#tabline#enabled=1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#tabline#buffer_nr_show=1
-
-" CtrlP
-""""""""""""""""""""""""""""""
-"let g:ctrlp_map = '<D-p>'
-let g:ctrlp_show_hidden=1
-let g:ctrlp_working_path_mode='r'
-"let g:ctrlp_use_caching=0
-let g:ctrlp_max_files=0
-let g:ctrlp_custom_ignore='node_modules\|git'
-" Easy bindings for its various modes
-nmap <Leader>b :CtrlPBuffer<cr>
-nmap <Leader>r :CtrlPMRU<cr>
-nmap <Leader>p :CtrlP<cr>
 
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -165,7 +132,7 @@ let NERDTreeShowBookmarks=1
 let g:NERDCommentEmptyLines=1
 let g:NERDCompactSexyComs=1
 let g:NERDDefaultAlign='left'
-:map <D-/> <Leader>ci
+"noremap <D-/> <Leader>ci
 
 " Fugitive
 """"""""""""""""""""""""""""""
@@ -176,10 +143,6 @@ nmap <Leader>gs :Gstatus<cr>
 """"""""""""""""""""""""""""""
 let delimitMate_expand_cr=1
 let delimitMate_expand_space=1
-
-" Javascript
-""""""""""""""""""""""""""""""
-let g:javascript_enable_domhtmlcss=1
 
 " Syntastic
 """"""""""""""""""""""""""""""
@@ -198,17 +161,6 @@ let g:syntastic_javascript_eslint_exe = '[ -f $(npm bin)/eslint ] && $(npm bin)/
 """"""""""""""""""""""""""""""
 let g:jsx_ext_required=0 " Allow JSX in normal JS files
 
-" AutoFormat
-""""""""""""""""""""""""""""""
-"au BufWrite * :Autoformat "auto format upon saving
-nnoremap <Leader>f :Autoformat<CR>
-let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-let g:formatters_javascript=['eslint']
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-let g:autoformat_verbosemode=1
-
 " YouCompleteMe
 """"""""""""""""""""""""""""""
 nnoremap <leader>g :YcmCompleter GoTo<CR>
@@ -224,5 +176,5 @@ set rtp+=/usr/local/opt/fzf
 
 " Signify
 """"""""""""""""""""""""""""""
-nmap > <Plug>(signify-next-hunk)
-nmap < <Plug>(signify-prev-hunk)noremap noremap 
+nnoremap > <Plug>(signify-next-hunk)
+nnoremap < <Plug>(signify-prev-hunk)noremap noremap 
