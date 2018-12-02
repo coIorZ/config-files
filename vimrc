@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
@@ -22,6 +21,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-repeat'
+Plugin 'prettier/vim-prettier'
+Plugin 'pangloss/vim-javascript'
+Plugin 'w0rp/ale'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -114,11 +116,14 @@ map <Leader><Leader> <Plug>(easymotion-prefix)
 
 " AirLine
 """"""""""""""""""""""""""""""
+let g:airline_section_x=0 " hide section x
+let g:airline_section_y=0 " hide section y
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled=0
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#tabline#buffer_nr_show=1
+let g:airline#extensions#ale#enabled=1
 
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -132,7 +137,6 @@ let NERDTreeShowBookmarks=1
 let g:NERDCommentEmptyLines=1
 let g:NERDCompactSexyComs=1
 let g:NERDDefaultAlign='left'
-"noremap <D-/> <Leader>ci
 
 " Fugitive
 """"""""""""""""""""""""""""""
@@ -143,19 +147,6 @@ nmap <Leader>gs :Gstatus<cr>
 """"""""""""""""""""""""""""""
 let delimitMate_expand_cr=1
 let delimitMate_expand_space=1
-
-" Syntastic
-""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list=1
-"let g:syntastic_auto_loc_list=1
-let g:syntastic_loc_list_height=3
-"let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=1
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_javascript_eslint_exe = '[ -f $(npm bin)/eslint ] && $(npm bin)/eslint || eslint'
 
 " Jsx
 """"""""""""""""""""""""""""""
@@ -176,5 +167,24 @@ set rtp+=/usr/local/opt/fzf
 
 " Signify
 """"""""""""""""""""""""""""""
-nnoremap > <Plug>(signify-next-hunk)
-nnoremap < <Plug>(signify-prev-hunk)noremap noremap 
+nmap > <Plug>(signify-next-hunk)
+nmap < <Plug>(signify-prev-hunk)
+
+" Prettier
+""""""""""""""""""""""""""""""
+nnoremap <Leader>f :Prettier<CR>
+"let g:prettier#autoformat=0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+" ALE
+""""""""""""""""""""""""""""""
+let g:ale_fixers={
+\   'javascript': ['prettier', 'eslint'],
+\   'css': ['prettier'],
+\}
+let g:ale_linters={
+\   'javascript': ['prettier', 'eslint'],
+\}
+let g:ale_linters_explicit=1
+let g:ale_sign_column_always=1
+let g:ale_fix_on_save=1
