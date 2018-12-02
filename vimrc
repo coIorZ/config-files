@@ -21,9 +21,11 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-repeat'
-Plugin 'prettier/vim-prettier'
 Plugin 'pangloss/vim-javascript'
 Plugin 'w0rp/ale'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'junegunn/fzf.vim'
+Plugin 'airblade/vim-rooter'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -102,10 +104,11 @@ nmap <S-k> <C-u>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <Leader>q :bd<CR>
-" Switch between two most recent buffers
-nmap <Tab> :b#<CR>
 " Create new [No Name] buffer
 nmap <Leader>t :enew<CR>
+" Cursor jump list
+nmap <S-h> <C-o>
+nmap <S-l> <C-i>
 
 
 " => Plugins
@@ -140,8 +143,8 @@ let g:NERDDefaultAlign='left'
 
 " Fugitive
 """"""""""""""""""""""""""""""
-nmap <Leader>gb :Gblame<cr>
-nmap <Leader>gs :Gstatus<cr>
+nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gs :Gstatus<CR>
 
 " DelimitMate
 """"""""""""""""""""""""""""""
@@ -159,32 +162,36 @@ nnoremap <leader>g :YcmCompleter GoTo<CR>
 " Ack
 """"""""""""""""""""""""""""""
 nnoremap <Leader>a :Ack!<Space>
-let g:ack_mappings={"o": "<CR><C-W><C-W>:ccl<CR>"}
-
-" Fzf
-""""""""""""""""""""""""""""""
-set rtp+=/usr/local/opt/fzf
+let g:ack_mappings={'o': '<CR><C-W><C-W>:ccl<CR>'}
 
 " Signify
 """"""""""""""""""""""""""""""
 nmap > <Plug>(signify-next-hunk)
 nmap < <Plug>(signify-prev-hunk)
 
-" Prettier
-""""""""""""""""""""""""""""""
-nnoremap <Leader>f :Prettier<CR>
-"let g:prettier#autoformat=0
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
-
 " ALE
 """"""""""""""""""""""""""""""
 let g:ale_fixers={
 \   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'tslint', 'eslint'],
 \   'css': ['prettier'],
 \}
 let g:ale_linters={
-\   'javascript': ['prettier', 'eslint'],
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint', 'eslint'],
 \}
 let g:ale_linters_explicit=1
 let g:ale_sign_column_always=1
 let g:ale_fix_on_save=1
+
+" FZF
+""""""""""""""""""""""""""""""
+" If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
+nmap <Leader>p :FZF<CR>
+nmap <Leader>r :History<CR>
+
+" Rooter
+""""""""""""""""""""""""""""""
+let g:rooter_patterns=['.git/']
+let g:rooter_silent_chdir=1
