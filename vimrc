@@ -109,6 +109,8 @@ nmap <Leader>t :enew<CR>
 " Cursor jump list
 nmap <S-h> <C-o>
 nmap <S-l> <C-i>
+" Copy relative path
+nmap <Leader>kp :let @+ = expand("%")<CR>
 
 
 " => Plugins
