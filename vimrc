@@ -190,6 +190,9 @@ let g:ale_linters={
 let g:ale_linters_explicit=1
 let g:ale_sign_column_always=1
 let g:ale_fix_on_save=1
+let g:ale_completion_enabled = 1
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap gh :ALEHover<CR>
 
 " FZF
 """"""""""""""""""""""""""""""
