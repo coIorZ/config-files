@@ -154,6 +154,10 @@ nmap <Leader>gs :Gstatus<CR>
 let delimitMate_expand_cr=1
 let delimitMate_expand_space=1
 
+" Javascript
+""""""""""""""""""""""""""""""
+let g:javascript_plugin_flow=1
+
 " Jsx
 """"""""""""""""""""""""""""""
 let g:jsx_ext_required=0 " Allow JSX in normal JS files
