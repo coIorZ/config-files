@@ -26,6 +26,7 @@ Plugin 'w0rp/ale'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter'
+Plugin 'ayu-theme/ayu-vim'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -46,6 +47,7 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set hidden
 set clipboard=unnamed "use system clipboard as default
 set noswapfile "disable .swp file
+set scrolloff=3 "3 lines off the edge when scrolling
 
 
 " => Appearence options
@@ -55,12 +57,9 @@ set cursorline "highlight the screen line of the cursor
 "set cursorcolumn
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
-set scrolloff=3 "3 lines off the edge when scrolling
-"set guifont=Monaco:h16
-colorscheme molokai "molokai | gruvbox | material
-set background=dark
-let g:molokai_original=1
-let g:rehash256=1
+colorscheme ayu
+let ayucolor='mirage'
+set termguicolors
 set laststatus=2                             " always show statusbar
 "set statusline=
 "set statusline+=%-10.3n\                     " buffer number
@@ -71,8 +70,6 @@ set laststatus=2                             " always show statusbar
 "set statusline+=0x%-8B                       " character value
 "set statusline+=%-14(%l,%c%V%)               " line, character
 "set statusline+=%<%P                         " file position
-let g:netrw_liststyle=3
-
 "Only required for mac users to preven the terminal flash issue
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
@@ -131,6 +128,7 @@ let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline#extensions#ale#enabled=1
+let g:airline#extensions#hunks#enabled=0
 
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -199,3 +197,4 @@ nmap <Leader>r :History<CR>
 """"""""""""""""""""""""""""""
 let g:rooter_patterns=['.git/']
 let g:rooter_silent_chdir=1
+autocmd BufEnter * :Rooter

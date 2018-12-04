@@ -89,3 +89,5 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+export TERM=xterm-256color
