@@ -221,3 +221,10 @@ let g:lightline.active = {
 \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok']
 \  ]
 \ }
+
+" COC
+""""""""""""""""""""""""""""""
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
