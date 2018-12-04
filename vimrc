@@ -35,6 +35,7 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 " => General settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' ' " Map Leader
+syntax on "turn on syntax highlighting
 set updatetime=100
 "set mouse=a
 set autoread "auto read files when modified outside
@@ -52,14 +53,13 @@ set scrolloff=3 "3 lines off the edge when scrolling
 
 " => Appearence options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on "turn on syntax highlighting
+colorscheme ayu
+let ayucolor='mirage'
+set termguicolors
 set cursorline "highlight the screen line of the cursor
 "set cursorcolumn
 set number "enable line numbers
 set ruler "show the line and column number of the cursor position
-colorscheme ayu
-let ayucolor='mirage'
-set termguicolors
 set laststatus=2                             " always show statusbar
 "set statusline=
 "set statusline+=%-10.3n\                     " buffer number
@@ -71,6 +71,7 @@ set laststatus=2                             " always show statusbar
 "set statusline+=%-14(%l,%c%V%)               " line, character
 "set statusline+=%<%P                         " file position
 "Only required for mac users to preven the terminal flash issue
+hi Search guibg=peru guifg=wheat
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
