@@ -9,7 +9,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles here:
 """"""""""""""""""
-Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
@@ -17,7 +16,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'mxw/vim-jsx'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-repeat'
@@ -27,6 +25,9 @@ Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'ayu-theme/ayu-vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'maximbaz/lightline-ale'
+Plugin 'neoclide/coc.nvim'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -36,7 +37,7 @@ filetype plugin indent on "enable loading plugins and indents based on file type
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' ' " Map Leader
 syntax on "turn on syntax highlighting
-set updatetime=100
+set updatetime=200
 "set mouse=a
 set autoread "auto read files when modified outside
 set ignorecase
@@ -49,13 +50,11 @@ set hidden
 set clipboard=unnamed "use system clipboard as default
 set noswapfile "disable .swp file
 set scrolloff=3 "3 lines off the edge when scrolling
+set noshowmode
 
-
-" => Appearence options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme ayu
 let ayucolor='mirage'
-set termguicolors
+set termguicolors " need to export TERM=xterm-256color"
 set cursorline "highlight the screen line of the cursor
 "set cursorcolumn
 set number "enable line numbers
@@ -70,10 +69,11 @@ set laststatus=2                             " always show statusbar
 "set statusline+=0x%-8B                       " character value
 "set statusline+=%-14(%l,%c%V%)               " line, character
 "set statusline+=%<%P                         " file position
-"Only required for mac users to preven the terminal flash issue
 hi Search guibg=peru guifg=wheat
+"Only required for mac users to preven the terminal flash issue
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+
 
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,18 +119,6 @@ nnoremap <Leader>f *
 """"""""""""""""""""""""""""""
 map <Leader><Leader> <Plug>(easymotion-prefix)
 
-" AirLine
-""""""""""""""""""""""""""""""
-let g:airline_section_x=0 " hide section x
-let g:airline_section_y=0 " hide section y
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled=0
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod=':t'
-let g:airline#extensions#tabline#buffer_nr_show=1
-let g:airline#extensions#ale#enabled=1
-let g:airline#extensions#hunks#enabled=0
-
 " NERDTree
 """"""""""""""""""""""""""""""
 nmap <Leader>n :NERDTreeFind<CR>
@@ -162,10 +150,6 @@ let g:javascript_plugin_flow=1
 """"""""""""""""""""""""""""""
 let g:jsx_ext_required=0 " Allow JSX in normal JS files
 
-" YouCompleteMe
-""""""""""""""""""""""""""""""
-nnoremap <leader>g :YcmCompleter GoTo<CR>
-
 " Ack
 """"""""""""""""""""""""""""""
 nnoremap <Leader>a :Ack!<Space>
@@ -178,14 +162,16 @@ nmap < <Plug>(signify-prev-hunk)
 
 " ALE
 """"""""""""""""""""""""""""""
+" `flow-language-server` needs to be installed globally
+" and others installed locally
+let g:ale_linters={
+\   'javascript': ['flow', 'flow-language-server', 'eslint'],
+\   'typescript': ['tslint', 'eslint'],
+\}
 let g:ale_fixers={
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'tslint', 'eslint'],
 \   'css': ['prettier'],
-\}
-let g:ale_linters={
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint', 'eslint'],
 \}
 let g:ale_linters_explicit=1
 let g:ale_sign_column_always=1
@@ -193,6 +179,7 @@ let g:ale_fix_on_save=1
 let g:ale_completion_enabled = 1
 nnoremap gd :ALEGoToDefinition<CR>
 nnoremap gh :ALEHover<CR>
+nnoremap gf :ALEFindReferences<CR>
 
 " FZF
 """"""""""""""""""""""""""""""
@@ -206,3 +193,31 @@ nmap <Leader>r :History<CR>
 let g:rooter_patterns=['.git/']
 let g:rooter_silent_chdir=1
 autocmd BufEnter * :Rooter
+
+" Lightline
+""""""""""""""""""""""""""""""
+let g:lightline = {}
+
+let g:lightline.component_expand = {
+\  'linter_checking': 'lightline#ale#checking',
+\  'linter_warnings': 'lightline#ale#warnings',
+\  'linter_errors': 'lightline#ale#errors',
+\  'linter_ok': 'lightline#ale#ok',
+\ }
+
+let g:lightline.component_type = {
+\     'linter_checking': 'left',
+\     'linter_warnings': 'warning',
+\     'linter_errors': 'error',
+\     'linter_ok': 'left',
+\ }
+
+let g:lightline.active = {
+\  'left': [[ 'mode', 'paste'], ['readonly', 'relativepath', 'modified']],
+\  'right': [
+\    ['lineinfo'],
+\    ['percent'],
+\    ['filetype'],
+\       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok']
+\  ]
+\ }
