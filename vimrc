@@ -23,11 +23,12 @@ Plugin 'w0rp/ale'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter'
-Plugin 'ayu-theme/ayu-vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'maximbaz/lightline-ale'
 Plugin 'neoclide/coc.nvim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -52,9 +53,12 @@ set noswapfile "disable .swp file
 set scrolloff=3 "3 lines off the edge when scrolling
 set noshowmode
 
-colorscheme ayu
+colorscheme gruvbox
 let ayucolor='mirage'
 set termguicolors " need to export TERM=xterm-256color"
+set background=dark
+set t_Co=256
+set guifont=Fira\ Code:h14
 set cursorline "highlight the screen line of the cursor
 "set cursorcolumn
 set number "enable line numbers
