@@ -27,8 +27,7 @@ Plugin 'ayu-theme/ayu-vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'maximbaz/lightline-ale'
 Plugin 'neoclide/coc.nvim'
-Plugin 'itchyny/vim-gitbranch'
-Plugin 'zivyangll/git-blame.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -212,7 +211,7 @@ let g:lightline = {
 \    ]
 \  },
 \  'component_function': {
-\    'gitbranch': 'gitbranch#name'
+\    'gitbranch': 'fugitive#head'
 \  }
 \}
 
@@ -220,3 +219,8 @@ let g:lightline = {
 """"""""""""""""""""""""""""""
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Fugitive
+""""""""""""""""""""""""""""""
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gs :Gstatus<CR>
