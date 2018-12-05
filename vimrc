@@ -11,7 +11,6 @@ Plugin 'VundleVim/Vundle.vim'
 """"""""""""""""""
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'raimondi/delimitmate'
 Plugin 'easymotion/vim-easymotion'
@@ -28,6 +27,8 @@ Plugin 'ayu-theme/ayu-vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'maximbaz/lightline-ale'
 Plugin 'neoclide/coc.nvim'
+Plugin 'itchyny/vim-gitbranch'
+Plugin 'zivyangll/git-blame.vim'
 
 call vundle#end() "required
 filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
@@ -70,9 +71,6 @@ set laststatus=2                             " always show statusbar
 "set statusline+=%-14(%l,%c%V%)               " line, character
 "set statusline+=%<%P                         " file position
 hi Search guibg=peru guifg=wheat
-"Only required for mac users to preven the terminal flash issue
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
 
 
 " => Editing
@@ -131,11 +129,6 @@ let NERDTreeShowBookmarks=1
 let g:NERDCommentEmptyLines=1
 let g:NERDCompactSexyComs=1
 let g:NERDDefaultAlign='left'
-
-" Fugitive
-""""""""""""""""""""""""""""""
-nmap <Leader>gb :Gblame<CR>
-nmap <Leader>gs :Gstatus<CR>
 
 " DelimitMate
 """"""""""""""""""""""""""""""
@@ -196,31 +189,32 @@ autocmd BufEnter * :Rooter
 
 " Lightline
 """"""""""""""""""""""""""""""
-let g:lightline = {}
-
-let g:lightline.component_expand = {
-\  'linter_checking': 'lightline#ale#checking',
-\  'linter_warnings': 'lightline#ale#warnings',
-\  'linter_errors': 'lightline#ale#errors',
-\  'linter_ok': 'lightline#ale#ok',
-\ }
-
-let g:lightline.component_type = {
-\     'linter_checking': 'left',
-\     'linter_warnings': 'warning',
-\     'linter_errors': 'error',
-\     'linter_ok': 'left',
-\ }
-
-let g:lightline.active = {
-\  'left': [[ 'mode', 'paste'], ['readonly', 'relativepath', 'modified']],
-\  'right': [
-\    ['lineinfo'],
-\    ['percent'],
-\    ['filetype'],
-\       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok']
-\  ]
-\ }
+let g:lightline = {
+\  'component_expand': {
+\    'linter_checking': 'lightline#ale#checking',
+\    'linter_warnings': 'lightline#ale#warnings',
+\    'linter_errors': 'lightline#ale#errors',
+\    'linter_ok': 'lightline#ale#ok'
+\  },
+\  'component_type': {
+\    'linter_checking': 'left',
+\    'linter_warnings': 'warning',
+\    'linter_errors': 'error',
+\    'linter_ok': 'left'
+\  },
+\  'active': {
+\    'left': [[ 'mode', 'paste'], ['readonly', 'relativepath', 'modified']],
+\    'right': [
+\      ['lineinfo'],
+\      ['percent'],
+\      ['gitbranch'],
+\      ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok']
+\    ]
+\  },
+\  'component_function': {
+\    'gitbranch': 'gitbranch#name'
+\  }
+\}
 
 " COC
 """"""""""""""""""""""""""""""
