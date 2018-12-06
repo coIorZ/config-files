@@ -1,37 +1,26 @@
-" => Vundle required settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set shell=/bin/sh
-set nocompatible " be iMproved
-filetype off "disable file type detection for loading specific options
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin() "required
-Plugin 'VundleVim/Vundle.vim'
-
-" My Bundles here:
-""""""""""""""""""
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'raimondi/delimitmate'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'mxw/vim-jsx'
-Plugin 'mhinz/vim-signify'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'pangloss/vim-javascript'
-Plugin 'w0rp/ale'
-Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'junegunn/fzf.vim'
-Plugin 'airblade/vim-rooter'
-Plugin 'itchyny/lightline.vim'
-Plugin 'maximbaz/lightline-ale'
-Plugin 'neoclide/coc.nvim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ayu-theme/ayu-vim'
-Plugin 'morhetz/gruvbox'
-
-call vundle#end() "required
-filetype plugin indent on "enable loading plugins and indents based on file type (required for Vundle)
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'raimondi/delimitmate'
+Plug 'easymotion/vim-easymotion'
+Plug 'mxw/vim-jsx'
+Plug 'mhinz/vim-signify'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-repeat'
+Plug 'pangloss/vim-javascript'
+Plug 'w0rp/ale'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'tpope/vim-fugitive'
+Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
+Plug 'maralla/completor.vim'
+Plug 'ferreum/completor-tmux'
+call plug#end()
 
 
 " => General settings
@@ -172,9 +161,8 @@ let g:ale_fixers={
 let g:ale_linters_explicit=1
 let g:ale_sign_column_always=1
 let g:ale_fix_on_save=1
-let g:ale_completion_enabled = 1
+"let g:ale_completion_enabled = 1
 nnoremap gd :ALEGoToDefinition<CR>
-nnoremap gh :ALEHover<CR>
 nnoremap gf :ALEFindReferences<CR>
 
 " FZF
@@ -219,7 +207,7 @@ let g:lightline = {
 \  }
 \}
 
-" COC
+" Completor
 """"""""""""""""""""""""""""""
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
