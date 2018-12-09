@@ -152,11 +152,11 @@ nmap < <Plug>(signify-prev-hunk)
 " and others installed locally
 let g:ale_linters={
 \   'javascript': ['flow', 'flow-language-server', 'eslint'],
-\   'typescript': ['tslint', 'eslint'],
+\   'typescript': ['tslint', 'tsserver'],
 \}
 let g:ale_fixers={
 \   'javascript': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'tslint', 'eslint'],
+\   'typescript': ['prettier', 'tslint'],
 \   'css': ['prettier'],
 \}
 let g:ale_linters_explicit=1
