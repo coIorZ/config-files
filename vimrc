@@ -63,7 +63,7 @@ set laststatus=2                             " always show statusbar
 "set statusline+=0x%-8B                       " character value
 "set statusline+=%-14(%l,%c%V%)               " line, character
 "set statusline+=%<%P                         " file position
-hi Search guibg=peru guifg=wheat
+hi Search guibg=sienna guifg=SandyBrown
 
 
 " => Editing
@@ -157,6 +157,7 @@ let g:ale_linters={
 let g:ale_fixers={
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'tslint'],
+\   'json': ['prettier'],
 \   'css': ['prettier'],
 \}
 let g:ale_linters_explicit=1
