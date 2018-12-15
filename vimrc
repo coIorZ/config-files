@@ -65,7 +65,6 @@ set laststatus=2                             " always show statusbar
 "set statusline+=%<%P                         " file position
 hi Search guibg=sienna guifg=SandyBrown
 
-
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set backspace=indent,eol,start "intuitive backspacing in insert mode
@@ -93,6 +92,7 @@ nmap <S-k> <C-u>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <Leader>q :bd<CR>
+nmap <Leader>Q :bd!<CR>
 " Create new [No Name] buffer
 nmap <Leader>t :enew<CR>
 " Cursor jump list
