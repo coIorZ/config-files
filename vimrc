@@ -28,7 +28,7 @@ call plug#end()
 let mapleader=' ' " Map Leader
 syntax on "turn on syntax highlighting
 set updatetime=200
-"set mouse=a
+set mouse=a
 set autoread "auto read files when modified outside
 set ignorecase
 set hlsearch
@@ -102,6 +102,11 @@ nmap <S-l> <C-i>
 nmap <Leader>kp :let @+ = expand("%")<CR>
 " Find current word
 nnoremap <Leader>f *
+" Navigate through split windows
+nnoremap <Leader>wj <C-w>j
+nnoremap <Leader>wk <C-w>k
+nnoremap <Leader>wh <C-w>h
+nnoremap <Leader>wl <C-w>l
 
 
 " => Plugins
