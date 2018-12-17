@@ -43,7 +43,7 @@ set noswapfile "disable .swp file
 set scrolloff=3 "3 lines off the edge when scrolling
 set noshowmode
 
-colorscheme ayu
+colorscheme gruvbox
 let ayucolor='mirage'
 set termguicolors " need to export TERM=xterm-256color"
 set background=dark
