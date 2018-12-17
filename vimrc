@@ -65,6 +65,7 @@ set laststatus=2                             " always show statusbar
 "set statusline+=%<%P                         " file position
 hi Search guibg=sienna guifg=SandyBrown
 
+
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set backspace=indent,eol,start "intuitive backspacing in insert mode
