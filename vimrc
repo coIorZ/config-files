@@ -87,9 +87,9 @@ inoremap kJ <Esc>
 inoremap KJ <Esc>
 
 " Pagedown 1/2
-nmap <S-j> <C-d>
+noremap <S-j> <C-d>
 " Pageup 1/2
-nmap <S-k> <C-u>
+noremap <S-k> <C-u>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <Leader>q :bd<CR>
@@ -103,6 +103,8 @@ nmap <S-l> <C-i>
 nmap <Leader>kp :let @+ = expand("%")<CR>
 " Find current word
 nnoremap <Leader>f *
+" clear highlight
+nnoremap <Leader>F :noh<CR>
 " Navigate through split windows
 nnoremap <Leader>wj <C-w>j
 nnoremap <Leader>wk <C-w>k
