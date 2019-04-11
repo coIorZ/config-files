@@ -66,6 +66,16 @@ set laststatus=2                             " always show statusbar
 hi Search guibg=sienna guifg=SandyBrown
 
 
+" => Customize
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup vimrc_todo
+    au!
+    au Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|OPTIMIZE|XXX):/
+          \ containedin=.*Comment,vimCommentTitle
+augroup END
+hi def link MyTodo Todo
+
+
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set backspace=indent,eol,start "intuitive backspacing in insert mode
