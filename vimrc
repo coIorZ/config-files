@@ -68,12 +68,15 @@ hi Search guibg=sienna guifg=SandyBrown
 
 " => Customize
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup vimrc_todo
-    au!
-    au Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|OPTIMIZE|XXX):/
-          \ containedin=.*Comment,vimCommentTitle
+augroup Todo
+  au!
+  au Syntax * syn match myTodo /\v.TODO:/hs=s+1 containedin=.*Comment
+  au Syntax * syn match myFixme /\v.FIXME:/hs=s+1 containedin=.*Comment
+  au Syntax * syn match myNOTE /\v.NOTE:/hs=s+1 containedin=.*Comment
 augroup END
-hi def link MyTodo Todo
+hi myTodo guifg=violet
+hi myFixme guifg=red
+hi myNOTE guifg=DodgerBlue1
 
 
 " => Editing
