@@ -20,6 +20,8 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'maralla/completor.vim'
 Plug 'ferreum/completor-tmux'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 
@@ -239,3 +241,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 """"""""""""""""""""""""""""""
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR>
+
+" UltiSnips
+""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger='<c-m>'
