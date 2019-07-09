@@ -21,6 +21,7 @@ Plug 'morhetz/gruvbox'
 Plug 'maralla/completor.vim'
 Plug 'ferreum/completor-tmux'
 Plug '907th/vim-auto-save'
+Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 
@@ -246,3 +247,10 @@ nnoremap <Leader>gs :Gstatus<CR>
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+
+" IndentGuide
+""""""""""""""""""""""""""""""
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_default_mapping = 0
