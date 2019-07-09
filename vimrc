@@ -20,6 +20,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'maralla/completor.vim'
 Plug 'ferreum/completor-tmux'
+Plug '907th/vim-auto-save'
 call plug#end()
 
 
@@ -239,3 +240,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 """"""""""""""""""""""""""""""
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR>
+
+" VimAutoSave
+""""""""""""""""""""""""""""""
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
