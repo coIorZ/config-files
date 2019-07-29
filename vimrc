@@ -16,7 +16,6 @@ Plug 'airblade/vim-rooter'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'tpope/vim-fugitive'
-Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'maralla/completor.vim'
 Plug 'ferreum/completor-tmux'
@@ -46,7 +45,6 @@ set scrolloff=3 "3 lines off the edge when scrolling
 set noshowmode
 
 colorscheme gruvbox
-let ayucolor='mirage'
 set termguicolors " need to export TERM=xterm-256color"
 set background=dark
 set t_Co=256
