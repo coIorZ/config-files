@@ -125,6 +125,8 @@ nnoremap <Leader>wh <C-w>h
 nnoremap <Leader>wl <C-w>l
 " Paste to end of line
 nnoremap Y v$y
+" Go to bookmark
+nnoremap ' `
 
 
 " => Plugins
